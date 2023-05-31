@@ -69,7 +69,7 @@
                         ig:'https://www.instagram.com/yuming7749/',
                         github:'https://github.com/devil1998871002'
                     },
-                    email:'sky0975657713@gmail.com',
+                    email:'devil1998871002@gmail.com',
                     product:[
                         {name:'燒餅',pay:'40',nums:'1'},
                         {name:'肉包',pay:'15',nums:'1'},
@@ -79,7 +79,7 @@
                         {name:'紅茶',pay:'20',nums:'1'},
                     ],
                     count:[1,2,3,4,5,6,7,8],
-                    shoping:JSON.parse(localStorage.getItem("mycoffee")) || [],
+                    shoping:JSON.parse(localStorage.getItem("shopcar")) || [],
                 },
                 methods:{
                     setdata(index){
@@ -89,7 +89,7 @@
                             pay:this.product[index].pay
                         });
                         let shopdata=JSON.stringify(this.shoping);
-                        localStorage.setItem('mycoffee',shopdata);
+                        localStorage.setItem('shopcar',shopdata);
                     }
                 }
  
