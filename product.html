@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="all.css/product.css">
+</head>
+<body>
+    <div class="productALL">
+        <input type="checkbox" name="" id="item_control" class="item_control" />
+        <div class="header">
+            
+            <div class="header-item">
+                <div class="logo"><a :href="menu[0].link">{{logo}}</a></div>
+                <label for="item_control" class="item_btn"></label>
+                <ul class="menu">
+                   <li v-for="item in menu">
+                    <a :href="item.link">{{item.name}}</a>
+                   </li>
+                </ul>
+            </div>
+            <div class="social">
+                <a :href="socialLink.fb" ><img src="img/fb.png" alt="facebook"></a>
+                <a :href="socialLink.ig" ><img src="img/ig.png" alt="instagram"></a>
+                <a :href="socialLink.github" ><img src="img/github.png" alt="github"></a>
+            </div>
+        </div>
+        <div class="content">
+            <h2>商品選購</h2>
+            <ul class="item">
+                <li class="product"  v-for="(pro, index) in product">
+                    <img src="img/all.JPG" alt="">
+                    <div class="product-txt">
+                        <h3>{{pro.name}}</h3>
+                        <h4>NT. {{pro.pay}}</h4>
+                        <div class="product-buy">
+                            <select name="num" v-model="product[index].nums">
+                                <option :value="num" v-for="num in count">{{num}}</option>
+                            </select>
+                            <a href="#" @click.prevent="setdata(index)">立即選購</a>
+                        </div>
+                    </div>
+                </li>
+                
+    
+            </ul>
+        </div>
+        <ul class="footer">
+            <li class="social">
+                <a :href="socialLink.fb" ><img src="img/fb.png" alt="facebook"></a>
+                <a :href="socialLink.ig" ><img src="img/ig.png" alt="instagram"></a>
+                <a :href="socialLink.github" ><img src="img/github.png" alt="github"></a>
+            </li>
+            <li>聯繫我：<a :href="'mailto:'+email"> {{email}}</a></li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el:'.productALL',
+                data:{
+                    logo:'breakfast!',
+                    menu:[{name:'首頁',link:'index.html'},{name:'產品列表',link:'product.html'},{name:'會員中心',link:'member.html'},{name:'購物車',link:'shopcar.html'}],
+                    socialLink:{
+                        fb:'https://facebook.com/',
+                        ig:'https://www.instagram.com/yuming7749/',
+                        github:'https://github.com/devil1998871002'
+                    },
+                    email:'sky0975657713@gmail.com',
+                    product:[
+                        {name:'燒餅',pay:'40',nums:'1'},
+                        {name:'肉包',pay:'15',nums:'1'},
+                        {name:'煎餃',pay:'50',nums:'1'},
+                        {name:'蘿蔔糕',pay:'30',nums:'1'},
+                        {name:'豆漿',pay:'25',nums:'1'},
+                        {name:'紅茶',pay:'20',nums:'1'},
+                    ],
+                    count:[1,2,3,4,5,6,7,8],
+                    shoping:JSON.parse(localStorage.getItem("mycoffee")) || [],
+                },
+                methods:{
+                    setdata(index){
+                        this.shoping.push({
+                            name:this.product[index].name,
+                            nums:this.product[index].nums,
+                            pay:this.product[index].pay
+                        });
+                        let shopdata=JSON.stringify(this.shoping);
+                        localStorage.setItem('mycoffee',shopdata);
+                    }
+                }
+ 
+            })
+        </script>
+
+    
+</body>
+</html>
