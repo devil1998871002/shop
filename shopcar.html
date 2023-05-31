@@ -36,10 +36,10 @@
                     <p>數量</p>
                     <p>單價</p>
                 </li>
-                <li class="itemContent" v-for="(mycoffees,index) in myshop">
-                    <p>{{mycoffees.name}}</p>
-                    <p>{{mycoffees.nums}}</p>
-                    <p>{{mycoffees.pay}}</p>
+                <li class="itemContent" v-for="(my,index) in myshop">
+                    <p>{{my.name}}</p>
+                    <p>{{my.nums}}</p>
+                    <p>{{my.pay}}</p>
                     <a href="#" @click.prevent="delcoffee(index)">刪除</a>
                 </li>
                 <li class="itemFooter">
